@@ -85,7 +85,7 @@ class XpShop extends PluginBase implements Listener {
         $xpPrice = $xpAmount * $this->config->get("sell-xp-price", 500);
         $player->getXpManager()->subtractXpLevels($xpAmount);
         EconomyAPI::getInstance()->addMoney($player, $xpPrice);
-        $player->sendMessage("§l§7[§aSUCCESS§7] §r§eYou sold §a" . $xpAmount . " §eXP for §a" . $xpPrice . "Coins");
+        $player->sendMessage("§l§7[§aSUCCESS§7] §r§eYou sold §a" . $xpAmount . " §eXP for §a" . $xpPrice . "Money");
     }
 
     private function openBuyForm(Player $player): void {
@@ -98,7 +98,7 @@ class XpShop extends PluginBase implements Listener {
 
         $form->setTitle("Buy XP");
         $form->addSlider("Amount of XP to buy", 0, 150, 1, 0);
-        $form->addLabel("Current Coins: " . CoinAPI::getInstance()->myCoin($player));
+        $form->addLabel("Current Money: " . EconomyAPI::getInstance()->myMoney($player));
         $form->addLabel("Buy Price per XP: " . $this->config->get("buy-xp-price", 500));
         $player->sendForm($form);
     }
@@ -110,9 +110,9 @@ class XpShop extends PluginBase implements Listener {
         if ($playerMoney >= $xpPrice) {
             $player->getXpManager()->addXpLevels($xpAmount);
             EconomyAPI::getInstance()->reduceMoney($player, $xpPrice);
-            $player->sendMessage("§l§7[§aSUCCESS§7] §r§eYou bought §a" . $xpAmount . " §eXP for §a" . $xpPrice . "Coins");
+            $player->sendMessage("§l§7[§aSUCCESS§7] §r§eYou bought §a" . $xpAmount . " §eXP for §a" . $xpPrice . "Money");
         } else {
-            $player->sendMessage("§l§c[ERROR] §r§cYou don't have enough coin to buy XP.");
+            $player->sendMessage("§l§c[ERROR] §r§cYou don't have enough money to buy XP.");
         }
     }
 }
