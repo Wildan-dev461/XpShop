@@ -1,0 +1,15 @@
+name: XpShop
+version: 1 - BETA
+api: [5.0.0]
+author: Will
+main: Will\XpShop
+depend: [EconomyAPI, FormAPI]
+commands:
+  xpshop:
+    description: Sell or buy Xp
+    usage: /xpshop
+    permission: xpshop.command
+permissions:
+  xpshop.command:
+    description: Allows players to use the SellBuyXP command
+    default: true
