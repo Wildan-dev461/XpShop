@@ -1,0 +1,7 @@
+# SellBuyXp Configuration
+
+# Harga jual XP per level
+sell-xp-price: 15000
+
+# Harga beli XP per level
+buy-xp-price: 20000
