@@ -71,7 +71,7 @@ class XpShop extends PluginBase implements Listener {
         $form->setTitle("Sell XP");
         $form->addSlider("Amount of XP to sell", 0, $player->getXpManager()->getXpLevel(), 1, 0);
         $form->addLabel("Current XP Level: " . $player->getXpManager()->getXpLevel());
-        $form->addLabel("Sell Price per XP: " . $this->config->get("sell-xp-price", 500));
+        $form->addLabel("Sell Price per XP: " . $this->config->get("sell-xp-price"));
         $player->sendForm($form);
     }
 
@@ -82,7 +82,7 @@ class XpShop extends PluginBase implements Listener {
             return;
         }
 
-        $xpPrice = $xpAmount * $this->config->get("sell-xp-price", 500);
+        $xpPrice = $xpAmount * $this->config->get("sell-xp-price");
         $player->getXpManager()->subtractXpLevels($xpAmount);
         EconomyAPI::getInstance()->addMoney($player, $xpPrice);
         $player->sendMessage("§l§7[§aSUCCESS§7] §r§eYou sold §a" . $xpAmount . " §eXP for §a" . $xpPrice . "Money");
@@ -99,12 +99,12 @@ class XpShop extends PluginBase implements Listener {
         $form->setTitle("Buy XP");
         $form->addSlider("Amount of XP to buy", 0, 150, 1, 0);
         $form->addLabel("Current Money: " . EconomyAPI::getInstance()->myMoney($player));
-        $form->addLabel("Buy Price per XP: " . $this->config->get("buy-xp-price", 500));
+        $form->addLabel("Buy Price per XP: " . $this->config->get("buy-xp-price"));
         $player->sendForm($form);
     }
 
     private function processBuyXp(Player $player, int $xpAmount): void {
-        $xpPrice = $xpAmount * $this->config->get("buy-xp-price", 500);
+        $xpPrice = $xpAmount * $this->config->get("buy-xp-price");
         $playerMoney = EconomyAPI::getInstance()->myMoney($player);
 
         if ($playerMoney >= $xpPrice) {
