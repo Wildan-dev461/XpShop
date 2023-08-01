@@ -3,7 +3,7 @@ version: 1 - BETA
 api: [5.0.0]
 author: Will
 main: Will\XpShop
-depend: [EconomyAPI, FormAPI]
+softdepend: [EconomyAPI, FormAPI]
 commands:
   xpshop:
     description: Sell or buy Xp
