@@ -109,7 +109,7 @@ class XpShop extends PluginBase implements Listener {
 
         if ($playerMoney >= $xpPrice) {
             $player->getXpManager()->addXpLevels($xpAmount);
-            CoinAPI::getInstance()->reduceCoin($player, $xpPrice);
+            EconomyAPI::getInstance()->reduceMoney($player, $xpPrice);
             $player->sendMessage("§l§7[§aSUCCESS§7] §r§eYou bought §a" . $xpAmount . " §eXP for §a" . $xpPrice . "Coins");
         } else {
             $player->sendMessage("§l§c[ERROR] §r§cYou don't have enough coin to buy XP.");
